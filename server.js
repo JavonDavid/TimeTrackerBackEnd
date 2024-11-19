@@ -11,15 +11,11 @@ app.use(express.json());
 /* making users in the api */
 const posts = [
 /* first user in posts */ 
-    {
-        username: "Javon",
-        title: "post"
-    },
-    /* second user in posts */
-    {
-        username: "Bob",
-        title: "post2"
-    }
+{ id: 1, username: `javon1792@gmail.com`, password: `smallman123` },
+{ id: 2, username: `timmythegod123@gmail.com`, password: `randmonman123`, },
+{ id: 3, username: `lebron3921@gmail.com`, password: `oneofthegoats` },
+{ id: 4, username: `derrick251@gmail.com`, password: `yallluckyhewashurt` }
+
 ]
 
 /* prints out the users that are in the posts container */
