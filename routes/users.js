@@ -61,7 +61,7 @@ router.post("/", (req, res) => {
   Sending a json formatted responce to the client */
   res.status(201).json(newUser);
 });
-app.delete("/:id", verifyToken, (req, res) => {
+router.delete("/:id", verifyToken, (req, res) => {
   let updatedusers = users.filter((u) => u.id !== parseInt(req.params.id));
   users.length = 0;
   users.push(...updatedusers);
