@@ -4,7 +4,6 @@ const userRouter = require("./routes/users");
 // Import the CORS middleware
 const cors = require("cors");
 
-
 /*this runs the express function  */
 const app = express();
 
