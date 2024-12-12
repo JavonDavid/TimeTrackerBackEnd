@@ -9,7 +9,7 @@ app.use(express.json()); /* helping the express understand json */
 
 app.use(`/users`, router); /* getting the /users from our users.js file */
 app.use(`/:id`, router); /* getting our/:id from our users.js file */
-app.use(`/`, router);
+app.use(`/:id`, router);/* adding a new user */
 
 app.listen(PORT, () => {
   /* the server will run at port 3001 on at localhost:3001 */

@@ -42,16 +42,14 @@ router.put("/:id", (req, res) => {
     /* checking if the userIndex is not exactly equal to -1 */
     users[userIndex] = {id: userId,...req.body,}; /* its making users at userIndex equal the id of the updating user*/
     res.json(users[userIndex]); /* sends this responce back to the user */
-  } elseres.status(404).send(`User not found`); /*If the id is wrong the user will get send a error  */
+  } else res.status(404).send(`User not found`); /*If the id is wrong the user will get send a error  */
 });
 // Adding a new user
 router.post("/", (req, res) => {
   const newUser = {id: users.length + 1,...req.body,
   }; /* make the number of user increase by 1 */
   users.push(newUser); /* adding the user into the array of users */
-  res
-    .status(201).json(newUser
-    ); /* Sending back 201 means something has been created. Sending a json formatted responce to the client */
+  res.status(201).json(newUser); /* Sending back 201 means something has been created. Sending a json formatted responce to the client */
 });
 /* delete a user by the id but you need a token to beable to do that */
 router.delete("/delete/:id", verifyToken, (req, res) => {
