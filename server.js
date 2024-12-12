@@ -8,12 +8,10 @@ app.use(cors()); // use cors middleware
 app.use(express.json()); /* helping the express understand json */
 
 app.use(`/users`, router); /* getting the /users from our users.js file */
-app.use(`/:id`,router); /* getting our/:id from our users.js file */
-app.use(`/`,router);
+app.use(`/:id`, router); /* getting our/:id from our users.js file */
+app.use(`/`, router);
 
 app.listen(PORT, () => {
   /* the server will run at port 3001 on at localhost:3001 */
-  console.log(
-    `Server is running on port ${PORT}`
-  ); /* we will get a log in our console letting us know if its running or not */
+  console.log(`Server is running on port ${PORT}`); /* we will get a log in our console letting us know if its running or not */
 });

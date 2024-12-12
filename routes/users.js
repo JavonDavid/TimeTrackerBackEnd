@@ -17,9 +17,7 @@ const users = [
 ];
 /* prints out the users that are in the posts container */
 router.get(`/`, (req, res) => {
-  res.json(
-    users
-  ); /* its taking the data from users converts it into json and sends it as a responce to the client */
+  res.json(users); /* its taking the data from users converts it into json and sends it as a responce to the client */
 });
 /* searching for users at their id  */
 router.get(`/:id`, (req, res) => {
@@ -29,49 +27,30 @@ router.get(`/:id`, (req, res) => {
     /* run there the users id.checking if the id of the user id is the same*/
     if (users[i].id == id_to_search) {
       /* chekcing if the id in users is the same as the one in id_to_search */
-      found_user =
-        users[
-          i
-        ]; /* found_user is equal to users[if the number equals the same i will be stored in found_users] */
+      found_user = users[i]; /* found_user is equal to users[if the number equals the same i will be stored in found_users] */
     }
   }
-  res.json(
-    found_user
-  ); /* converting the data of found_user and converts it into json and sends it as a responce to the client  */
+  res.json(found_user); /* converting the data of found_user and converts it into json and sends it as a responce to the client  */
 });
 /* updates the an old user */
 router.put("/:id", (req, res) => {
-  const userId = parseInt(
-    req.params.id
-  ); /* converts the first argument to and string and the ncnages it to and integer or NaN and the req.prams.id allows me to capture dynamic values from the URL path*/
+  const userId = parseInt(req.params.id); /* converts the first argument to and string and the ncnages it to and integer or NaN and the req.prams.id allows me to capture dynamic values from the URL path*/
   const userIndex = users.findIndex(
     (u) => u.id === userId
   ); /* it returns the index of that element stops going threw the array and than compares it exactly to the u.id io userId */
   if (userIndex !== -1) {
     /* checking if the userIndex is not exactly equal to -1 */
-    users[userIndex] = {
-      id: userId,
-      ...req.body,
-    }; /* its making users at userIndex equal the id of the updating user*/
+    users[userIndex] = {id: userId,...req.body,}; /* its making users at userIndex equal the id of the updating user*/
     res.json(users[userIndex]); /* sends this responce back to the user */
-  }
-  elseres
-    .status(404)
-    .send(
-      `User not found`
-    ); /*If the id is wrong the user will get send a error  */
+  } elseres.status(404).send(`User not found`); /*If the id is wrong the user will get send a error  */
 });
 // Adding a new user
 router.post("/", (req, res) => {
-  const newUser = {
-    id: users.length + 1,
-    ...req.body,
+  const newUser = {id: users.length + 1,...req.body,
   }; /* make the number of user increase by 1 */
   users.push(newUser); /* adding the user into the array of users */
   res
-    .status(201)
-    .json(
-      newUser
+    .status(201).json(newUser
     ); /* Sending back 201 means something has been created. Sending a json formatted responce to the client */
 });
 /* delete a user by the id but you need a token to beable to do that */
@@ -87,25 +66,17 @@ router.delete("/delete/:id", verifyToken, (req, res) => {
 router.post(`/login`, async (req, res) => {
   try {
     email = req.body.email; /* this is requesting the email from the body  */
-    password =
-      req.body.password; /* this is requesting the password from the body */
+    password = req.body.password; /* this is requesting the password from the body */
     const foundUser = users.find(
       /* finding if the user that login is in the system */
-      (user) =>
-        user.password == password &&
-        user.email ==
-          email /* checking if the password and email are the same as any user in our system */
-    );
+      (user) => user.password == password && user.email == email /* checking if the password and email are the same as any user in our system */);
     if (!foundUser) {
       /* and if no user is found send them this massahe */
       res.status(401).send({ message: "Wrong username and password" });
     }
     // make the token
     const payload = { email: foundUser.email }; /* who the token is for*/
-    const token = jwt.sign(
-      payload,
-      SECRET_KEY
-    ); /* this is creating the token so we know they are verfied */
+    const token = jwt.sign(payload,SECRET_KEY); /* this is creating the token so we know they are verfied */
     // sending back the token
     res.status(201).send({ token: token }); /* this is sending the token back */
   } catch {
