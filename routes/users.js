@@ -64,7 +64,7 @@ router.get(`/login`, async (req, res) => {
       res.status(401).send({ message: "Wrong username and password" });
     }
     // make the token
-    const payload = { email: foundUser.email };
+    const payload = { email: foundUser.email };/* who the token is for*/
     const token = jwt.sign(payload, SECRET_KEY);/* this is creating the token so we know they are verfied */
     // sending back the token
     res.status(201).send({ token: token });/* this is sending the token back */
