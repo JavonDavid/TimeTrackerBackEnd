@@ -7,9 +7,11 @@ const PORT = process.env.PORT || 3001; /* setting the name port to be at 3001 */
 app.use(cors()); // use cors middleware
 app.use(express.json()); /* helping the express understand json */
 
-app.use(`/users`, router); /* getting the /users from our users.js file */
-app.use(`/:id`, router); /* getting our/:id from our users.js file */
-app.use(`/:id`, router);/* adding a new user */
+app.get(`/users`, router); /* getting the /users from our users.js file */
+app.post(`/post`, router); /* getting our/:id from our users.js file */
+app.post("/login",router);/* lets the user login */
+app.delete(`/id/:id`, router);/* adding a new user */
+app.put(`/:id`,router);/* update a old user */
 
 app.listen(PORT, () => {
   /* the server will run at port 3001 on at localhost:3001 */

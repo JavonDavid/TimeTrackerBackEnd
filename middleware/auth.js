@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const SECRET_KEY = "mySecretKey";
 
 const verifyToken = (req, res, next) => {
-  const authHeader = req.header["Authorization"];/* this is accessing the header and extracts the value of authorization from imcoming http request  */
+  const authHeader = req.headers['authorization'];/* this is accessing the header and extracts the value of authorization from imcoming http request  */
   const token = authHeader.split(" ")[1];/* this is spliting the token so we only get the token */
   try {
     jwt.verify(token, SECRET_KEY);/* this is verifying the token and signing it with the SECRET_KEY */
